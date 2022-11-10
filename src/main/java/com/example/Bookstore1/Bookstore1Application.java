@@ -29,13 +29,21 @@ public class Bookstore1Application {
 
 		return (args) -> {
 
-			log.info("save a couple of books");
+			log.info("Categorys");
 
 			crepository.save(new Category("Horror"));
 			crepository.save(new Category("Romantic"));
 			crepository.save(new Category("Action"));
 			crepository.save(new Category("Drama"));
 			crepository.save(new Category("Thriller"));
+
+			log.info("Testing books");
+			repository.save(new Book("Test Book", "Test Author", 1988, "12322-232495", 20.00,
+					crepository.findByName("Horror").get(0)));
+			repository.save(new Book("Test Book 2", "Author Nauthor", 1995, "123-09876", 400.90,
+					crepository.findByName("Action").get(0)));
+			repository.save(new Book("Test Book 3", "Guy Writer", 2019, "754-948545", 3000.05,
+					crepository.findByName("Drama").get(0)));
 
 			log.info("fetch all books");
 			for (Book book : repository.findAll()) {
